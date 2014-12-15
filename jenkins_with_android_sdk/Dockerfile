@@ -35,15 +35,13 @@ RUN echo "y" | android update sdk --filter extra --no-ui --all
 RUN echo "y" | android update sdk --filter platform-tools,build-tools-21.1.2 --no-ui --all
 
 # Add Jenkins
-# Thanks to orchardup/jenkins Dockerfile
-RUN wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -
-RUN echo "deb http://pkg.jenkins-ci.org/debian-stable binary/" >> /etc/apt/sources.list
-RUN apt-get update
-# HACK: https://issues.jenkins-ci.org/browse/JENKINS-20407
-RUN mkdir /var/run/jenkins
-RUN apt-get install -y jenkins
-RUN service jenkins start
+#
+ADD http://mirrors.jenkins-ci.org/war/latest/jenkins.war /opt/jenkins.war
+RUN ln -sf /jenkins /root/.jenkins
+
+ENTRYPOINT ["java", "-jar", "/opt/jenkins.war"]
 EXPOSE 8080
-VOLUME ["/var/lib/jenkins"]
-ENTRYPOINT [ "java","-jar","/usr/share/jenkins/jenkins.war" ]
+VOLUME ["/jenkins"]
+CMD [""]
+
 ## END

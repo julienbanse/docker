@@ -30,11 +30,9 @@ RUN chmod -R 777 $ANDROID_HOME
 ENV PATH $ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
 
 RUN echo "y" | android update sdk --no-ui
-#RUN echo "y" | android update sdk --filter android-21 --no-ui --all
-#RUN echo "y" | android update sdk --filter extra --no-ui --all
-RUN echo "y" | android update sdk --filter platform-tools,build-tools-21.1.2,build-tools-21.1.1 --no-ui --all
-#RUN echo "y" | android update sdk --filter tools --no-ui --all
-
+RUN echo "y" | android update sdk --filter android-21 --no-ui --all
+RUN echo "y" | android update sdk --filter extra --no-ui --all
+RUN echo "y" | android update sdk --filter platform-tools,build-tools-21.1.2 --no-ui --all
 
 # Add Jenkins
 # Thanks to orchardup/jenkins Dockerfile

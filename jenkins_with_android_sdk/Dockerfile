@@ -42,7 +42,7 @@ RUN apt-get update
 # HACK: https://issues.jenkins-ci.org/browse/JENKINS-20407
 RUN mkdir /var/run/jenkins
 RUN apt-get install -y jenkins
-RUN service jenkins stop
+RUN service jenkins start
 EXPOSE 8080
 VOLUME ["/var/lib/jenkins"]
 ENTRYPOINT [ "java","-jar","/usr/share/jenkins/jenkins.war" ]

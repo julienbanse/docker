@@ -44,4 +44,39 @@ EXPOSE 8080
 VOLUME ["/jenkins"]
 CMD [""]
 
+# Add Jenkins plugins
+#
+# Jenkins: Jobs
+#RUN mkdir -p /data/jenkins/jobs/Template_Android_Gradle
+#RUN cp ./Template_Android_Gradle/config.xml /data/jenkins/jobs/Template_Android_Gradle/.
+
+RUN mkdir -p /data/jenkins/plugins
+RUN cd /data/jenkins/plugins
+RUN wget https://updates.jenkins-ci.org/latest/credentials.hpi
+RUN wget https://updates.jenkins-ci.org/latest/ssh-credentials.hpi
+RUN wget https://updates.jenkins-ci.org/latest/promoted-builds.hpi
+RUN wget https://updates.jenkins-ci.org/latest/javadoc.hpi
+RUN wget https://updates.jenkins-ci.org/latest/mailer.hpi
+RUN wget https://updates.jenkins-ci.org/latest/token-macro.hpi
+RUN wget https://updates.jenkins-ci.org/latest/maven-plugin.hpi
+RUN wget https://updates.jenkins-ci.org/latest/scm-api.hpi
+RUN wget https://updates.jenkins-ci.org/latest/subversion.hpi
+RUN wget https://updates.jenkins-ci.org/latest/run-condition.hpi
+RUN wget https://updates.jenkins-ci.org/latest/conditional-buildstep.hpi
+RUN wget https://updates.jenkins-ci.org/latest/parameterized-trigger.hpi
+RUN wget https://updates.jenkins-ci.org/latest/git-client.hpi
+RUN wget https://updates.jenkins-ci.org/latest/dashboard-view.hpi
+RUN wget https://updates.jenkins-ci.org/latest/ant.hpi
+RUN wget https://updates.jenkins-ci.org/latest/analysis-core.hpi
+
+# Jenkins: Plugins
+RUN wget https://updates.jenkins-ci.org/latest/git.hpi
+RUN wget https://updates.jenkins-ci.org/latest/gradle.hpi
+RUN wget https://updates.jenkins-ci.org/latest/analysis-collector.hpi
+RUN wget https://updates.jenkins-ci.org/latest/checkstyle.hpi
+RUN wget https://updates.jenkins-ci.org/latest/findbugs.hpi
+RUN wget https://updates.jenkins-ci.org/latest/pmd.hpi
+RUN wget https://updates.jenkins-ci.org/latest/htmlpublisher.hpi
+
+EXPOSE 22
 ## END

@@ -1,13 +1,13 @@
 FROM ubuntu:14.04
 MAINTAINER Julien Banse, "julien.banse@gmail.com"
 
-RUN apt-get update && apt-get clean
-RUN apt-get install -q -y wget
-RUN apt-get install -q -y zip
-
 RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu precise main" | tee /etc/apt/sources.list.d/webupd8team-java.list
 RUN echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu precise main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
+
+RUN apt-get update && apt-get clean
+RUN apt-get install -q -y wget
+RUN apt-get install -q -y zip
 
 # Never ask for confirmations
 ENV DEBIAN_FRONTEND noninteractive

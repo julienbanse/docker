@@ -61,5 +61,4 @@ RUN wget https://updates.jenkins-ci.org/latest/findbugs.hpi
 RUN wget https://updates.jenkins-ci.org/latest/pmd.hpi
 RUN wget https://updates.jenkins-ci.org/latest/htmlpublisher.hpi
 
-EXPOSE 22
 ## END

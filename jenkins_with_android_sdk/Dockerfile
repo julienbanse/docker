@@ -20,17 +20,13 @@ RUN echo "y" | android update sdk --filter platform-tools,build-tools-21.1.2 --n
 RUN wget http://mirrors.jenkins-ci.org/war/latest/jenkins.war -O /opt/jenkins.war
 RUN ln -sf /jenkins /root/.jenkins
 
-ENTRYPOINT ["java", "-jar", "/opt/jenkins.war"]
-EXPOSE 8080
-VOLUME ["/jenkins"]
-CMD [""]
-
 # Add Jenkins plugins
 #
 # Jenkins: Jobs
 #RUN mkdir -p /data/jenkins/jobs/Template_Android_Gradle
 #RUN cp ./Template_Android_Gradle/config.xml /data/jenkins/jobs/Template_Android_Gradle/.
 
+#plugins
 RUN mkdir -p /data/jenkins/plugins
 RUN cd /data/jenkins/plugins
 RUN wget https://updates.jenkins-ci.org/latest/credentials.hpi
@@ -50,7 +46,7 @@ RUN wget https://updates.jenkins-ci.org/latest/dashboard-view.hpi
 RUN wget https://updates.jenkins-ci.org/latest/ant.hpi
 RUN wget https://updates.jenkins-ci.org/latest/analysis-core.hpi
 
-# Jenkins: Plugins
+# Jenkins: Get Plugins
 RUN wget https://updates.jenkins-ci.org/latest/git.hpi
 RUN wget https://updates.jenkins-ci.org/latest/gradle.hpi
 RUN wget https://updates.jenkins-ci.org/latest/analysis-collector.hpi
@@ -58,5 +54,11 @@ RUN wget https://updates.jenkins-ci.org/latest/checkstyle.hpi
 RUN wget https://updates.jenkins-ci.org/latest/findbugs.hpi
 RUN wget https://updates.jenkins-ci.org/latest/pmd.hpi
 RUN wget https://updates.jenkins-ci.org/latest/htmlpublisher.hpi
+
+#Run Jenkins
+ENTRYPOINT ["java", "-jar", "/opt/jenkins.war"]
+EXPOSE 8080
+VOLUME ["/jenkins"]
+CMD [""]
 
 ## END

@@ -22,6 +22,7 @@ RUN apt-get install oracle-java7-set-default -y
 ENV JAVA_HOME /usr/bin/java
 ENV PATH $JAVA_HOME:$PATH
 
+EXPOSE 22
 #setup ssh (https://docs.docker.com/examples/running_ssh_service/)
 
 ## END

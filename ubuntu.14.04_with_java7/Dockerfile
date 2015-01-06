@@ -8,6 +8,8 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
 RUN apt-get update && apt-get clean
 RUN apt-get install -q -y wget
 RUN apt-get install -q -y zip
+RUN apt-get install -q -y openssh-server
+RUN apt-get install -q -y supervisor
 
 # Never ask for confirmations
 ENV DEBIAN_FRONTEND noninteractive
@@ -21,5 +23,23 @@ RUN apt-get install oracle-java8-set-default -y
 
 ENV JAVA_HOME /usr/bin/java
 ENV PATH $JAVA_HOME:$PATH
+
+# Configure ssh
+RUN mkdir -p /var/run/sshd
+RUN chmod 755 /var/run/sshd
+RUN echo 'root:root' |chpasswd
+RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+RUN sed -ri 's/#UsePAM no/UsePAM no/g' /etc/ssh/sshd_config
+RUN sed -ri 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+
+# Configure Supervisor
+RUN mkdir -p /var/log/supervisor
+ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Expose ports
+EXPOSE 22
+
+# Start Supervisor
+CMD ["/usr/bin/supervisord","-n"]
 
 ## END

@@ -14,10 +14,10 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN echo "debconf shared/accepted-oracle-license-v1-1 select true" | /usr/bin/debconf-set-selections
 RUN echo "debconf shared/accepted-oracle-license-v1-1 seen true" | /usr/bin/debconf-set-selections
 
-# Add oracle-jdk7 to repositories
+# Add oracle-jdk8 to repositories
 RUN apt-get install python-software-properties -y
-RUN apt-get install oracle-java7-installer -y
-RUN apt-get install oracle-java7-set-default -y
+RUN apt-get install oracle-java8-installer -y
+RUN apt-get install oracle-java8-set-default -y
 
 ENV JAVA_HOME /usr/bin/java
 ENV PATH $JAVA_HOME:$PATH

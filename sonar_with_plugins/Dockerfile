@@ -34,6 +34,6 @@ RUN wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-pm
 RUN wget http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-widget-lab-plugin/1.6/sonar-widget-lab-plugin-1.6.jar -O /opt/sonarqube/extensions/downloads
 
 #start sonarqube
-CMD /opt/sonar/bin/linux-x86-64/sonar.sh console
+CMD /opt/sonarqube/bin/linux-x86-64/sonar.sh console
 
 ## END

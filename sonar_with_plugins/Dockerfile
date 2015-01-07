@@ -14,6 +14,7 @@ RUN wget -P /opt/sonarqube-4.5/extensions/downloads/ http://repository.codehaus.
 RUN wget -P /opt/sonarqube-4.5/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-pmd-plugin/2.3/sonar-pmd-plugin-2.3.jar
 RUN wget -P /opt/sonarqube-4.5/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-widget-lab-plugin/1.6/sonar-widget-lab-plugin-1.6.jar
 
-RUN /opt/sonarqube-4.5/bin/linux-x86-64/sonar.sh stop && /opt/startSonar.sh
+RUN /opt/sonarqube-4.5/bin/linux-x86-64/sonar.sh stop
+CMD ["/opt/startSonar.sh"]
 
 ## END

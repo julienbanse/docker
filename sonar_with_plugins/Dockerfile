@@ -1,7 +1,9 @@
 FROM jahroots/sonarqube
+
 MAINTAINER Julien Banse, "julien.banse@gmail.com"
 
 RUN apt-get update && apt-get clean
+RUN apt-get install -q -y wget
 
 # download and install sonar plugins
 RUN wget http://repository.codehaus.org/org/codehaus/sonar-plugins/android/sonar-android-plugin/1.0/sonar-android-plugin-1.0.jar -O /opt/sonarqube-4.5/extensions/downloads
@@ -11,5 +13,6 @@ RUN wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-ja
 RUN wget http://repository.codehaus.org/org/codehaus/sonar-plugins/l10n/sonar-l10n-fr-plugin/1.10/sonar-l10n-fr-plugin-1.10.jar -O /opt/sonarqube-4.5/extensions/downloads
 RUN wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-pmd-plugin/2.3/sonar-pmd-plugin-2.3.jar -O /opt/sonarqube-4.5/extensions/downloads
 RUN wget http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-widget-lab-plugin/1.6/sonar-widget-lab-plugin-1.6.jar -O /opt/sonarqube-4.5/extensions/downloads
+
 
 ## END

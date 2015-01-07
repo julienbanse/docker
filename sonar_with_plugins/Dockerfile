@@ -1,4 +1,4 @@
-FROM nimmis/java:oracle-8-jdk 
+FROM nimmis/java:openjdk-8-jdk
 
 MAINTAINER Julien Banse, "julien.banse@gmail.com"
 

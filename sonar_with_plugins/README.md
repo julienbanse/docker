@@ -1,24 +1,15 @@
-Docker SonarQube 4.5.1 LTS
+Docker SonarQube 4.5
 ======
-The docker file base on julienbanse/ubuntu.14.04_with_java
+The docker file base on docker [jahroots/sonarqube](https://registry.hub.docker.com/u/jahroots/sonarqube/) 
 
 This docker file need a mysql docker to be linked.
-
-Somme environnment variable are available to be more flexible :
-
-`
-SONAR_JDBC_URL jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance
-SONAR_DB_USERNAME sonar
-SONAR_DB_PASSWORD sonar
-SONARQUBE_VERSION 4.5.1
-`
 
 # When using in a vagrant file :
 
 `
 config.vm.provision "docker" do |d|
 		d.run "julienbanse/sonar_with_plugins",
-			args: "-d -p 9000:9000 -name ubuntu -link mysql:db"
+			args: "-d -p 9000:9000 -name sonar"
 	end
 `
 

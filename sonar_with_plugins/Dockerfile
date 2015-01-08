@@ -6,7 +6,7 @@ RUN apt-get update && apt-get clean
 
 RUN apt-get install -q -y wget
 RUN apt-get install -q -y zip
-RUN apt-get install -q -y openssh-server
+#RUN apt-get install -q -y openssh-server
 
 # sonar
 ENV SONAR_JDBC_URL jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance
@@ -33,10 +33,10 @@ RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/
 RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-pmd-plugin/2.3/sonar-pmd-plugin-2.3.jar
 RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-widget-lab-plugin/1.6/sonar-widget-lab-plugin-1.6.jar
 
-#Expose sonar and ssh port
-EXPOSE 22 9000
+#Expose sonar port
+EXPOSE 9000
 
-# Start Supervisor
-RUN /opt/sonarqube/bin/linux-x86-64/sonar.sh console
+# Start Sonar
+CMD /opt/sonarqube/bin/linux-x86-64/sonar.sh console
 
 ## END

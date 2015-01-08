@@ -2,6 +2,8 @@ FROM nimmis/java:openjdk-8-jdk
 
 MAINTAINER Julien Banse, "julien.banse@gmail.com"
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN apt-get update && apt-get clean
 
 RUN apt-get install -q -y wget

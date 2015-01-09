@@ -28,7 +28,7 @@ config.vm.provision "docker" do |d|
 - sonar-android-plugin-1.0
 - sonar-build-breaker-plugin-1.1
 - sonar-checkstyle-plugin-2.2
-- sonar-java-plugin-2.7
+- sonar-java-plugin-2.8
 - sonar-l10n-fr-plugin-1.10
 - sonar-pmd-plugin-2.3
 - sonar-widget-lab-plugin-1.6

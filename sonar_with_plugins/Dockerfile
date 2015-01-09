@@ -11,7 +11,7 @@ RUN apt-get install -q -y zip
 #RUN apt-get install -q -y openssh-server
 
 # sonar
-ENV SONAR_JDBC_URL jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance
+ENV SONAR_JDBC_URL jdbc:mysql://db:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance
 ENV SONAR_DB_USERNAME sonar
 ENV SONAR_DB_PASSWORD 123qwe
 ENV SONARQUBE_VERSION 4.5.2

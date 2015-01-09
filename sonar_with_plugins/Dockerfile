@@ -24,17 +24,17 @@ RUN sed -i s*#sonar.jdbc.url=jdbc:h2:tcp://localhost:9092/sonar*sonar.jdbc.url=\
     sed -i s*#sonar.jdbc.username=sonar*sonar.jdbc.username=\${env:SONAR_DB_USERNAME}*g /opt/sonarqube/conf/sonar.properties && \
     sed -i s*#sonar.jdbc.password=sonar*sonar.jdbc.password=\${env:SONAR_DB_PASSWORD}*g /opt/sonarqube/conf/sonar.properties
 
-VOLUME ["/opt/sonarqube"]
-
 # download and install sonar plugins
-RUN wget -P /opt/sonarqube-${SONARQUBE_VERSION}/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/android/sonar-android-plugin/1.0/sonar-android-plugin-1.0.jar
-RUN wget -P /opt/sonarqube-${SONARQUBE_VERSION}/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-build-breaker-plugin/1.1/sonar-build-breaker-plugin-1.1.jar
-RUN wget -P /opt/sonarqube-${SONARQUBE_VERSION}/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-checkstyle-plugin/2.2/sonar-checkstyle-plugin-2.2.jar
-RUN wget -P /opt/sonarqube-${SONARQUBE_VERSION}/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-java-plugin/2.7/sonar-java-plugin-2.7.jar
-RUN wget -P /opt/sonarqube-${SONARQUBE_VERSION}/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/l10n/sonar-l10n-fr-plugin/1.10/sonar-l10n-fr-plugin-1.10.jar
-RUN wget -P /opt/sonarqube-${SONARQUBE_VERSION}/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-pmd-plugin/2.3/sonar-pmd-plugin-2.3.jar
-RUN wget -P /opt/sonarqube-${SONARQUBE_VERSION}/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-widget-lab-plugin/1.6/sonar-widget-lab-plugin-1.6.jar
-RUN wget -P /opt/sonarqube-${SONARQUBE_VERSION}/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/3.1/sonar-findbugs-plugin-3.1.jar
+RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/android/sonar-android-plugin/1.0/sonar-android-plugin-1.0.jar
+RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-build-breaker-plugin/1.1/sonar-build-breaker-plugin-1.1.jar
+RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-checkstyle-plugin/2.2/sonar-checkstyle-plugin-2.2.jar
+RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-java-plugin/2.7/sonar-java-plugin-2.7.jar
+RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/l10n/sonar-l10n-fr-plugin/1.10/sonar-l10n-fr-plugin-1.10.jar
+RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-pmd-plugin/2.3/sonar-pmd-plugin-2.3.jar
+RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-widget-lab-plugin/1.6/sonar-widget-lab-plugin-1.6.jar
+RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/3.1/sonar-findbugs-plugin-3.1.jar
+
+VOLUME ["/opt/sonarqube"]
 
 #Expose sonar port
 EXPOSE 9000

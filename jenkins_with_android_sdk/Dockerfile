@@ -59,6 +59,14 @@ RUN wget -P /data/jenkins/plugins/ https://updates.jenkins-ci.org/latest/findbug
 RUN wget -P /data/jenkins/plugins/ https://updates.jenkins-ci.org/latest/pmd.hpi
 RUN wget -P /data/jenkins/plugins/ https://updates.jenkins-ci.org/latest/htmlpublisher.hpi
 
+### Configure ssh
+RUN mkdir -p /var/run/sshd
+RUN chmod 755 /var/run/sshd
+RUN echo 'root:root' |chpasswd
+RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+RUN sed -ri 's/#UsePAM no/UsePAM no/g' /etc/ssh/sshd_config
+RUN sed -ri 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+
 ### Clean
 RUN apt-get -y autoclean
 RUN apt-get -y clean

@@ -1,6 +1,8 @@
 FROM jenkins
 MAINTAINER Julien Banse, "julien.banse@gmail.com"
 
+USER root
+ 
 RUN apt-get update && apt-get install -y openssh-server supervisor
 
 #android

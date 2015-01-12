@@ -16,8 +16,7 @@ RUN tar xvf /opt/android-sdk_r24-linux.tgz -C /opt/
 ENV ANDROID_HOME /opt/android-sdk-linux
 RUN chmod -R 777 $ANDROID_HOME
 
-ENV PATH $PATH:$ANDROID_HOME/tools
-ENV PATH $PATH:$ANDROID_HOME/platform-tools
+ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
 ADD sdk_android.sh /opt/tools/android-accept-licenses.sh
 ENV PATH ${PATH}:/opt/tools
@@ -50,9 +49,9 @@ RUN apt-get -y autoremove
 RUN mkdir -p /var/log/supervisor
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-EXPOSE 8080 22
+EXPOSE 22
 
-VOLUME ["/jenkins"]
+#VOLUME ["/jenkins"]
 
 ### Start Supervisor (with jenkins and sshd)
 CMD ["/usr/bin/supervisord","-n"]

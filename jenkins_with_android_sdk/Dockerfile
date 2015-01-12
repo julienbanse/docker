@@ -16,10 +16,10 @@ ENV PATH $PATH:$ANDROID_HOME/platform-tools
 
 ADD sdk_android.sh /opt/android-sdk-linux/android-accept-licenses.sh
 
-RUN ["$ANDROID_HOME/android-accept-licenses.sh", "sudo android update sdk --no-ui"]
-RUN ["$ANDROID_HOME/android-accept-licenses.sh", "sudo android update sdk --filter android-21 --no-ui --all"]
-RUN ["$ANDROID_HOME/android-accept-licenses.sh", "sudo android update sdk --filter extra --no-ui --all"]
-RUN ["$ANDROID_HOME/android-accept-licenses.sh", "sudo android update sdk --filter platform-tools,build-tools-21.1.2 --no-ui --all"]
+RUN ["$ANDROID_HOME/android-accept-licenses.sh", "android update sdk --no-ui"]
+RUN ["$ANDROID_HOME/android-accept-licenses.sh", "android update sdk --filter android-21 --no-ui --all"]
+RUN ["$ANDROID_HOME/android-accept-licenses.sh", "android update sdk --filter extra --no-ui --all"]
+RUN ["$ANDROID_HOME/android-accept-licenses.sh", "android update sdk --filter platform-tools,build-tools-21.1.2 --no-ui --all"]
 
 # Add Jenkins plugins
 #

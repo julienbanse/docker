@@ -18,6 +18,7 @@ RUN chmod -R 777 $ANDROID_HOME
 
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
+RUN mkdir -p /opt/tools
 ADD sdk_android.sh /opt/tools/android-accept-licenses.sh
 ENV PATH ${PATH}:/opt/tools
 

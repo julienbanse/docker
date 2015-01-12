@@ -4,7 +4,7 @@ MAINTAINER Julien Banse, "julien.banse@gmail.com"
 # Add Jenkins plugins
 # plugins
 COPY plugins.txt /plugins.txt
-RUN /usr/share/jenkins/plugins.sh /plugins.txt
+RUN /usr/local/bin/plugins.sh /plugins.txt
 
 USER root
  

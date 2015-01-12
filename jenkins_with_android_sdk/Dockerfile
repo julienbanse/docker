@@ -22,6 +22,8 @@ ENV PATH $PATH:$ANDROID_HOME/platform-tools
 ADD sdk_android.sh /opt/tools/android-accept-licenses.sh
 ENV PATH ${PATH}:/opt/tools
 
+RUN chmod 755 /opt/tools/android-accept-licenses.sh
+
 RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --no-ui"]
 RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --filter android-21 --no-ui --all"]
 RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --filter extra --no-ui --all"]

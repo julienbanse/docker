@@ -1,4 +1,4 @@
-FROM pull jenkins
+FROM jenkins
 MAINTAINER Julien Banse, "julien.banse@gmail.com"
 
 RUN apt-get update && apt-get clean

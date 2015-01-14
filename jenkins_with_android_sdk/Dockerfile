@@ -19,7 +19,7 @@ RUN chmod -R 777 $ANDROID_HOME
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
 RUN mkdir -p /opt/tools
-ADD sdk_android.sh /opt/tools/android-accept-licenses.sh
+COPY sdk_android.sh /opt/tools/android-accept-licenses.sh
 ENV PATH ${PATH}:/opt/tools
 
 RUN chmod 755 /opt/tools/android-accept-licenses.sh
@@ -31,7 +31,7 @@ RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --filter platf
 
 # Jenkins: Jobs
 #RUN mkdir -p /data/jenkins/jobs/Template_Android_Gradle
-#ADD Template_Android_Gradle/config.xml /data/jenkins/jobs/Template_Android_Gradle/
+#COPY Template_Android_Gradle/config.xml /data/jenkins/jobs/Template_Android_Gradle/
 
 ### Configure ssh
 RUN mkdir -p /var/run/sshd
@@ -48,7 +48,7 @@ RUN apt-get -y autoremove
 
 ### Configure Supervisor
 RUN mkdir -p /var/log/supervisor
-ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 22
 

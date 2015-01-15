@@ -8,11 +8,11 @@ RUN /usr/local/bin/plugins.sh /plugins.txt
 
 USER root
  
-RUN apt-get update && apt-get install -y openssh-server supervisor
+RUN apt-get update && apt-get install -y openssh-server supervisor expect
 
 #android
 RUN wget http://dl.google.com/android/android-sdk_r24-linux.tgz -O /opt/android-sdk_r24-linux.tgz
-RUN tar xvf /opt/android-sdk_r24-linux.tgz -C /opt/
+RUN tar xf /opt/android-sdk_r24-linux.tgz -C /opt/
 ENV ANDROID_HOME /opt/android-sdk-linux
 RUN chmod -R 777 $ANDROID_HOME
 

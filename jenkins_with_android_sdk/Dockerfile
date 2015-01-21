@@ -21,6 +21,7 @@ RUN tar xf /opt/android-sdk_r24-linux.tgz -C /opt/
 RUN mkdir -p /opt/tools
 COPY sdk_android.sh /opt/tools/android-accept-licenses.sh
 ENV PATH ${PATH}:/opt/tools
+RUN chmod -R 777 /opt/android-sdk-linux
 
 RUN chmod 755 /opt/tools/android-accept-licenses.sh
 

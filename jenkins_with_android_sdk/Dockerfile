@@ -6,6 +6,10 @@ MAINTAINER Julien Banse, "julien.banse@gmail.com"
 COPY plugins.txt /plugins.txt
 RUN /usr/local/bin/plugins.sh /plugins.txt
 
+# Jenkins: Jobs
+RUN mkdir -p /var/jenkins_home/jobs/Template_Android_Gradle
+ADD Template_Android_Gradle/config.xml /var/jenkins_home/jobs/Template_Android_Gradle/
+
 USER root
  
 RUN apt-get update && apt-get install -y openssh-server supervisor expect
@@ -14,7 +18,7 @@ RUN apt-get update && apt-get install -y openssh-server supervisor expect
 RUN wget http://dl.google.com/android/android-sdk_r24-linux.tgz -O /opt/android-sdk_r24-linux.tgz
 RUN tar xf /opt/android-sdk_r24-linux.tgz -C /opt/
 ENV ANDROID_HOME /opt/android-sdk-linux
-RUN chmod -R 777 $ANDROID_HOME
+RUN chmod -R 777 /opt/android-sdk-linux
 
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
@@ -24,14 +28,11 @@ ENV PATH ${PATH}:/opt/tools
 
 RUN chmod 755 /opt/tools/android-accept-licenses.sh
 
-RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --no-ui"]
-RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --filter android-21 --no-ui --all"]
+#RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --no-ui"]
+RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --filter tools --no-ui --all"]
 RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --filter extra --no-ui --all"]
-RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --filter platform-tools,build-tools-21.1.2 --no-ui --all"]
-
-# Jenkins: Jobs
-#RUN mkdir -p /data/jenkins/jobs/Template_Android_Gradle
-#COPY Template_Android_Gradle/config.xml /data/jenkins/jobs/Template_Android_Gradle/
+RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --filter platform-tools --no-ui"]
+RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --filter android-21 --no-ui"]
 
 ### Configure ssh
 RUN mkdir -p /var/run/sshd
@@ -51,8 +52,6 @@ RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 22
-
-#VOLUME ["/jenkins"]
 
 ### Start Supervisor (with jenkins and sshd)
 CMD ["/usr/bin/supervisord","-n"]

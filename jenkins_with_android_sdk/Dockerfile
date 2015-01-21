@@ -18,9 +18,13 @@ RUN apt-get update && apt-get install -y openssh-server supervisor expect
 RUN wget http://dl.google.com/android/android-sdk_r24-linux.tgz -O /opt/android-sdk_r24-linux.tgz
 RUN tar xf /opt/android-sdk_r24-linux.tgz -C /opt/
 
+ENV ANDROID_HOME /opt/android-sdk-linux
+ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+
 RUN mkdir -p /opt/tools
 COPY sdk_android.sh /opt/tools/android-accept-licenses.sh
 ENV PATH ${PATH}:/opt/tools
+
 RUN chmod -R 777 /opt/android-sdk-linux
 
 RUN chmod 755 /opt/tools/android-accept-licenses.sh

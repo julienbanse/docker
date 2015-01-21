@@ -8,6 +8,7 @@ RUN apt-get update && apt-get clean
 
 RUN apt-get install -q -y wget
 RUN apt-get install -q -y zip
+RUN apt-get install -q -y expect
 
 # sonar
 ENV SONAR_JDBC_URL jdbc:mysql://db:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance

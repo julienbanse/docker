@@ -8,7 +8,6 @@ RUN apt-get update && apt-get clean
 
 RUN apt-get install -q -y wget
 RUN apt-get install -q -y zip
-#RUN apt-get install -q -y openssh-server
 
 # sonar
 ENV SONAR_JDBC_URL jdbc:mysql://db:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance
@@ -34,12 +33,28 @@ RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/
 RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-widget-lab-plugin/1.6/sonar-widget-lab-plugin-1.6.jar
 RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/3.1/sonar-findbugs-plugin-3.1.jar
 
+#android sdk for sonar-android analyses (lint tools)
+RUN wget http://dl.google.com/android/android-sdk_r24-linux.tgz -O /opt/android-sdk_r24-linux.tgz
+RUN tar xf /opt/android-sdk_r24-linux.tgz -C /opt/
+ENV ANDROID_HOME /opt/android-sdk-linux
+RUN chmod -R 777 /opt/android-sdk-linux
+
+ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+
+RUN mkdir -p /opt/tools
+COPY sdk_android.sh /opt/tools/android-accept-licenses.sh
+ENV PATH ${PATH}:/opt/tools
+
+RUN chmod 755 /opt/tools/android-accept-licenses.sh
+RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --filter tools --no-ui --all"]
+RUN chmod -R 777 /opt/android-sdk-linux
+
 VOLUME ["/opt/sonarqube"]
 
 #Expose sonar port
 EXPOSE 9000
 
 # Start Sonar
-CMD /opt/sonarqube/bin/linux-x86-64/sonar.sh console
+ENTRYPOINT /opt/sonarqube/bin/linux-x86-64/sonar.sh console
 
 ## END

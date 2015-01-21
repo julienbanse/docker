@@ -1,6 +1,8 @@
-Docker SonarQube 4.5.2
+Docker SonarQube
 ======
 The docker file base on docker [nimmis/java:oracle-7-jdk](https://registry.hub.docker.com/u/nimmis/java/) 
+
+Default sonar version is 4.5.2
 
 This docker file need a mysql docker to be linked.
 
@@ -22,6 +24,7 @@ config.vm.provision "docker" do |d|
 			args: "-d -p 9000:9000 -name ubuntu -link mysql:db"
 	end
 `
+optionnal part of sonar are available : 9001 and 9010
 
 # These plugins are installed by default :
 

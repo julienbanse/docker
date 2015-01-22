@@ -1,11 +1,6 @@
 FROM jenkins
 MAINTAINER Julien Banse, "julien.banse@gmail.com"
 
-# Add Jenkins plugins
-# plugins
-COPY plugins.txt /plugins.txt
-RUN /usr/local/bin/plugins.sh /plugins.txt
-
 USER root
  
 RUN apt-get update && apt-get install -y openssh-server supervisor expect
@@ -53,6 +48,11 @@ EXPOSE 22
 CMD ["/usr/bin/supervisord","-n"]
 
 USER jenkins
+
+# Add Jenkins plugins
+# plugins
+COPY plugins.txt /plugins.txt
+RUN /usr/local/bin/plugins.sh /plugins.txt
 
 # Jenkins: Jobs
 RUN mkdir -p ${JENKINS_HOME}/jobs/Template_Android_Gradle

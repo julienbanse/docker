@@ -9,6 +9,7 @@ scm-api:latest
 subversion:latest
 run-condition:latest
 conditional-buildstep:latest
+parameterized-trigger:latest
 git-client:latest
 dashboard-view:latest
 ant:latest

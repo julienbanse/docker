@@ -1,9 +1,17 @@
 FROM jenkins
 MAINTAINER Julien Banse, "julien.banse@gmail.com"
 
+# Add Jenkins plugins
+# plugins
+COPY plugins.txt /plugins.txt
+RUN /usr/local/bin/plugins.sh /plugins.txt
+
+# Jenkins: Jobs
+RUN mkdir -p ${JENKINS_HOME}/jobs/Template_Android_Gradle
+ADD Template_Android_Gradle/config.xml ${JENKINS_HOME}/jobs/Template_Android_Gradle/
+
 USER root
- 
-RUN apt-get update && apt-get install -y openssh-server supervisor expect
+RUN apt-get update && apt-get install -y expect openssh-server
 
 #android
 RUN wget http://dl.google.com/android/android-sdk_r24-linux.tgz -O /opt/android-sdk_r24-linux.tgz
@@ -39,24 +47,16 @@ RUN apt-get -y clean
 RUN apt-get -y autoremove
 
 ### Configure Supervisor
-RUN mkdir -p /var/log/supervisor
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+#RUN mkdir -p /var/log/supervisor
+#COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 22
 
 ### Start Supervisor (with jenkins and sshd)
-CMD ["/usr/bin/supervisord","-n"]
+#CMD ["/usr/bin/supervisord","-n"]
+CMD ["/usr/sbin/sshd", "-D"]
 
 USER jenkins
-
-# Add Jenkins plugins
-# plugins
-COPY plugins.txt /plugins.txt
-RUN /usr/local/bin/plugins.sh /plugins.txt
-
-# Jenkins: Jobs
-RUN mkdir -p ${JENKINS_HOME}/jobs/Template_Android_Gradle
-ADD Template_Android_Gradle/config.xml ${JENKINS_HOME}/jobs/Template_Android_Gradle/
 
 ENV ANDROID_HOME /opt/android-sdk-linux
 

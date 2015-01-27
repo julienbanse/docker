@@ -47,14 +47,13 @@ RUN apt-get -y clean
 RUN apt-get -y autoremove
 
 ### Configure Supervisor
-#RUN mkdir -p /var/log/supervisor
-#COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+RUN mkdir -p /var/log/supervisor
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 22
 
 ### Start Supervisor (with jenkins and sshd)
-#CMD ["/usr/bin/supervisord","-n"]
-CMD ["/usr/sbin/sshd", "-D"]
+CMD ["/usr/bin/supervisord","-n"]
 
 USER jenkins
 

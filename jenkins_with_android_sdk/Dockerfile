@@ -1,15 +1,6 @@
 FROM nimmis/java:oracle-7-jdk
 MAINTAINER Julien Banse, "julien.banse@gmail.com"
 
-# Add Jenkins plugins
-# plugins
-COPY plugins.txt /plugins.txt
-RUN /usr/local/bin/plugins.sh /plugins.txt
-
-# Jenkins: Jobs
-RUN mkdir -p ${JENKINS_HOME}/jobs/Template_Android_Gradle
-ADD Template_Android_Gradle/config.xml ${JENKINS_HOME}/jobs/Template_Android_Gradle/
-
 RUN apt-get update && apt-get clean
 
 RUN apt-get install -q -y wget
@@ -41,6 +32,10 @@ RUN chmod -R 777 /opt/android-sdk-linux
 #
 RUN wget http://mirrors.jenkins-ci.org/war/latest/jenkins.war -O /opt/jenkins.war
 RUN ln -sf /jenkins /root/.jenkins
+
+# Jenkins: Jobs
+RUN mkdir -p /data/jenkins/jobs/Template_Android_Gradle
+ADD Template_Android_Gradle/config.xml /data/jenkins/jobs/Template_Android_Gradle/
 
 #plugins
 RUN mkdir -p /data/jenkins/plugins

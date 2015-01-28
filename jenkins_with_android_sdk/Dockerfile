@@ -54,11 +54,4 @@ EXPOSE 22
 
 ### Start Supervisor (with jenkins and sshd)
 CMD ["/usr/bin/supervisord","-n"]
-
-USER jenkins
-
-ENV ANDROID_HOME /opt/android-sdk-linux
-
-ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
-
 ## END

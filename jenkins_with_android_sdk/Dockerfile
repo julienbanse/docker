@@ -7,6 +7,7 @@ RUN apt-get install -q -y wget
 RUN apt-get install -q -y zip
 RUN apt-get install -q -y openssh-server
 RUN apt-get install -q -y supervisor
+RUN apt-get install -q -y expect
 
 #android
 RUN wget http://dl.google.com/android/android-sdk_r24-linux.tgz -O /opt/android-sdk_r24-linux.tgz

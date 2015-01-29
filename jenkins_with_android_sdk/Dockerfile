@@ -11,7 +11,7 @@ RUN mkdir -p ${JENKINS_HOME}/jobs/Template_Android_Gradle
 ADD Template_Android_Gradle/config.xml ${JENKINS_HOME}/jobs/Template_Android_Gradle/
 
 USER root
-RUN apt-get update && apt-get install -y expect openssh-server
+RUN apt-get update && apt-get install -y expect
 
 #android
 RUN wget http://dl.google.com/android/android-sdk_r24-linux.tgz -O /opt/android-sdk_r24-linux.tgz
@@ -31,27 +31,11 @@ RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --filter extra
 RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --filter platform-tools --no-ui"]
 RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --filter android-21 --no-ui"]
 
-RUN chmod -R 777 /opt/android-sdk-linux
-
-### Configure ssh
-RUN mkdir -p /var/run/sshd
-RUN chmod 755 /var/run/sshd
-RUN echo 'root:root' |chpasswd
-RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
-RUN sed -ri 's/#UsePAM no/UsePAM no/g' /etc/ssh/sshd_config
-RUN sed -ri 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+RUN chmod -R 755 /opt/android-sdk-linux
 
 ### Clean
 RUN apt-get -y autoclean
 RUN apt-get -y clean
 RUN apt-get -y autoremove
 
-### Configure Supervisor
-RUN mkdir -p /var/log/supervisor
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-EXPOSE 22
-
-### Start Supervisor (with jenkins and sshd)
-CMD ["/usr/bin/supervisord","-n"]
 ## END

@@ -53,9 +53,9 @@ RUN chmod -R 777 /opt/android-sdk-linux
 VOLUME ["/opt/sonarqube"]
 
 #Expose sonar port
-EXPOSE 9000
+EXPOSE 9000 9001 9010
 
 # Start Sonar
-ENTRYPOINT /opt/sonarqube/bin/linux-x86-64/sonar.sh console
+ENTRYPOINT /opt/sonarqube/bin/linux-x86-64/sonar.sh restart && /opt/sonarqube/bin/linux-x86-64/sonar.sh console
 
 ## END

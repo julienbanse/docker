@@ -56,6 +56,6 @@ VOLUME ["/opt/sonarqube"]
 EXPOSE 9000 9001 9010
 
 # Start Sonar
-ENTRYPOINT /opt/sonarqube/bin/linux-x86-64/sonar.sh restart && /opt/sonarqube/bin/linux-x86-64/sonar.sh console
+ENTRYPOINT /opt/sonarqube/bin/linux-x86-64/sonar.sh stop && /opt/sonarqube/bin/linux-x86-64/sonar.sh console
 
 ## END

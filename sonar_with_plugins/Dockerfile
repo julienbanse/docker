@@ -28,11 +28,11 @@ RUN sed -i s*#sonar.jdbc.url=jdbc:h2:tcp://localhost:9092/sonar*sonar.jdbc.url=\
 RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/android/sonar-android-plugin/1.0/sonar-android-plugin-1.0.jar
 RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-build-breaker-plugin/1.1/sonar-build-breaker-plugin-1.1.jar
 RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-checkstyle-plugin/2.2/sonar-checkstyle-plugin-2.2.jar
-RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-java-plugin/2.8/sonar-java-plugin-3.1.jar
-RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/l10n/sonar-l10n-fr-plugin/1.10/sonar-l10n-fr-plugin-1.13.jar
+RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-java-plugin/3.1/sonar-java-plugin-3.1.jar
+RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/l10n/sonar-l10n-fr-plugin/1.13/sonar-l10n-fr-plugin-1.13.jar
 RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-pmd-plugin/2.3/sonar-pmd-plugin-2.3.jar
 RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-widget-lab-plugin/1.6/sonar-widget-lab-plugin-1.6.jar
-RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/3.1/sonar-findbugs-plugin-3.2.jar
+RUN wget -P /opt/sonarqube/extensions/downloads/ http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/3.2/sonar-findbugs-plugin-3.2.jar
 
 #android sdk for sonar-android analyses (lint tools)
 RUN wget http://dl.google.com/android/android-sdk_r24-linux.tgz -O /opt/android-sdk_r24-linux.tgz

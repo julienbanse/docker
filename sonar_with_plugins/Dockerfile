@@ -14,7 +14,7 @@ RUN apt-get install -q -y expect
 ENV SONAR_JDBC_URL jdbc:mysql://db:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance
 ENV SONAR_DB_USERNAME sonar
 ENV SONAR_DB_PASSWORD 123qwe
-ENV SONARQUBE_VERSION 5.0.1
+ENV SONARQUBE_VERSION 5.1
 
 RUN wget http://dist.sonar.codehaus.org/sonarqube-${SONARQUBE_VERSION}.zip -O /tmp/sonarqube-${SONARQUBE_VERSION}.zip 
 RUN unzip /tmp/sonarqube-${SONARQUBE_VERSION}.zip -d /opt
